@@ -9,7 +9,10 @@
 
 package com.doaa.decadeofmovies.di
 
+import com.doaa.decadeofmovies.ui.main.moviesmaster.MoviesMasterViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
+    viewModel { MoviesMasterViewModel() }
 }

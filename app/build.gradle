@@ -31,6 +31,8 @@ dependencies {
     implementation "androidx.core:core-ktx:$androidxCore"
     implementation "androidx.appcompat:appcompat:$androidxCompat"
     implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintLayout"
+    implementation "androidx.cardview:cardview:$androidxCardView"
+    implementation "androidx.recyclerview:recyclerview:$androidxRecyclerviewer"
 
     // di
     implementation "org.koin:koin-core:$koinCore"

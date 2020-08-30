@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Doaa Fouad on 8/30/20 4:28 PM
+  ~ Copyright (c) 2020 , Doaa Fouad . All rights reserved.
+  ~ Last modified 8/30/20 4:28 PM
+  ~
+  ~ Email: doaa_fouad2006@hotmail.com
+  ~ LinkedIn: /doaafouad
+  -->
+
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/arimo</item>
+    </array>
+</resources>
