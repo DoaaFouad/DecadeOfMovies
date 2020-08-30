@@ -17,7 +17,7 @@ import com.doaa.decadeofmovies.data.model.Movie
 
 class MoviesAdapter() : RecyclerView.Adapter<MoviesViewHolder>() {
 
-    private var moviesList: MutableList<Movie> = arrayListOf()
+    private var moviesList: List<Movie> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val view =
@@ -34,8 +34,7 @@ class MoviesAdapter() : RecyclerView.Adapter<MoviesViewHolder>() {
         holder.bind(moviesList[position])
     }
 
-    fun setData(_moviesList: MutableList<Movie>) {
-        moviesList.clear()
+    fun setData(_moviesList: List<Movie>) {
         moviesList = _moviesList
         notifyDataSetChanged()
     }

@@ -12,7 +12,9 @@ package com.doaa.decadeofmovies.ui.main.moviesmaster
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.doaa.decadeofmovies.R
+import com.doaa.decadeofmovies.data.model.Movie
 import com.doaa.decadeofmovies.ui.base.BaseActivity
 import com.doaa.decadeofmovies.utils.Status
 import kotlinx.android.synthetic.main.activity_movies_master.*
@@ -24,9 +26,25 @@ class MoviesMasterActivity : BaseActivity() {
     override val viewModel by viewModel<MoviesMasterViewModel>()
     override val layoutRes = R.layout.activity_movies_master
 
-    private val moviesAdapter by inject<MoviesAdapter>()
+    private var moviesAdapter: MoviesAdapter? = null
+
+    private fun initRecyclerViewer() {
+        val layoutManager = LinearLayoutManager(this)
+        rv_movies?.layoutManager = layoutManager
+
+        moviesAdapter = MoviesAdapter()
+        rv_movies?.adapter = moviesAdapter
+    }
+
+    private fun setMoviesList(moviesList: List<Movie>?) {
+        moviesList?.let {
+            moviesAdapter?.setData(moviesList)
+        }
+    }
 
     override fun initViews() {
+        initRecyclerViewer()
+
         viewModel.readMoviesFromLocalFile()
     }
 
@@ -34,6 +52,7 @@ class MoviesMasterActivity : BaseActivity() {
         viewModel.movies.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
+                    setMoviesList(it.data?.movies)
                     hideProgress()
                 }
                 Status.LOADING -> {

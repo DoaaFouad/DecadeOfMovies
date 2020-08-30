@@ -46,8 +46,15 @@
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movies"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:elevation="12dp"
+        android:background="@color/colorSecondaryBackground"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="@id/fl_main"
         app:layout_constraintEnd_toEndOf="@id/fl_main"
         app:layout_constraintStart_toStartOf="@id/fl_main"

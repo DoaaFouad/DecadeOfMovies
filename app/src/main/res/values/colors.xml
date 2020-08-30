@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- material design -->
     <color name="colorPrimary">#25282A</color>
     <color name="colorPrimaryDark">#141414</color>
     <color name="colorAccent">#DA291C</color>
 
+    <!-- background -->
     <color name="colorMainBackground">@color/colorPrimary</color>
     <color name="colorSecondaryBackground">#F8F8FF</color>
 
+    <!-- text -->
     <color name="colorLightPrimaryText">#FFFFFF</color>
     <color name="colorLightSecondaryText">#F8F8FF</color>
-
     <color name="colorDarkPrimaryText">#7C878E</color>
     <color name="colorDarkSecondaryText">#DDDDDD</color>
 
+    <!-- views-->
+    <color name="colorRatingBar">#F0E68C</color>
+
+    <!-- general -->
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 

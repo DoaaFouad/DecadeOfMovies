@@ -13,19 +13,39 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.doaa.decadeofmovies.data.model.Movie
 import kotlinx.android.synthetic.main.item_movies_master.view.*
+import java.lang.StringBuilder
 
-class MoviesViewHolder(val view: View): RecyclerView.ViewHolder(view){
+class MoviesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(movie: Movie){
+    fun bind(movie: Movie) {
         setTitle(movie.title)
         setYear(movie.year)
+        setGenre(movie.genres)
+        setRating(movie.rating)
     }
 
-    private fun setTitle(title: String?){
+    private fun setTitle(title: String?) {
         itemView.tv_title?.text = title
     }
 
-    private fun setYear(year: String?){
-        itemView.tv_year?.text = year
+    private fun setYear(year: String?) {
+        itemView.tv_year?.text = "($year)"
+    }
+
+    private fun setGenre(genres: List<String>?) {
+        val genreStringBuilder = StringBuilder()
+        genres?.let {
+            for (_genre in genres) {
+                genreStringBuilder.append(_genre)
+                genreStringBuilder.append(" ")
+            }
+            itemView.tv_genre_value?.text = genreStringBuilder
+        }
+    }
+
+    private fun setRating(rate: Float?) {
+        rate?.let {
+            itemView.ratingbar?.rating = it
+        }
     }
 }
