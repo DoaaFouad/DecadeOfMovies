@@ -10,6 +10,7 @@
 package com.doaa.decadeofmovies
 
 import android.app.Application
+import com.doaa.decadeofmovies.di.adapterModule
 import com.doaa.decadeofmovies.di.apiModule
 import com.doaa.decadeofmovies.di.repositoryModule
 import com.doaa.decadeofmovies.di.viewModelModule
@@ -28,7 +29,7 @@ class DecadeOfMoviesApplication : Application() {
         org.koin.core.context.startKoin {
             androidLogger()
             androidContext(this@DecadeOfMoviesApplication)
-            modules(listOf(viewModelModule, repositoryModule, apiModule))
+            modules(listOf(viewModelModule, repositoryModule, apiModule, adapterModule))
         }
     }
 }

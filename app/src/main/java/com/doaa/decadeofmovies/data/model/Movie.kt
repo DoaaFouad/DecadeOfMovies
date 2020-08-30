@@ -9,12 +9,11 @@
 
 package com.doaa.decadeofmovies.data.model
 
-
 data class MoviesResponse(
-    var movies : List<MoviesResponseData>?
+    var movies : List<Movie>?
 )
 
-data class MoviesResponseData(
+data class Movie(
     var title : String?,
     var year : String?
 )
