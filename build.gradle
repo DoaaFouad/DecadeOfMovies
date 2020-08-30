@@ -24,3 +24,32 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// Define versions in a single place
+ext {
+
+    minSdkVersion = 23
+    targetSdkVersion = 29
+    compileSdkVersion = 29
+
+    // App dependencies
+    koinCore = '2.0.1'
+    koinArchitecture = '2.0.1'
+    androidLifeCycle = '2.2.0'
+    androidxCore = '1.3.1'
+    androidxCompat = '1.2.0'
+    androidxConstraintLayout = '2.0.1'
+    rxJava = '2.1.1'
+    rxAndroid = '2.1.1'
+    retrofit = '2.7.1'
+    retrofitConvertor = '2.6.2'
+    retrofitRxJava = '2.6.2'
+    gson = '2.8.6'
+    okhttpInterceptor = '3.9.1'
+    glide ='4.11.0'
+    glideCompiler = '4.11.0'
+    leakCanary = '2.0'
+    junit = '4.12'
+    androidxtesting= '1.1.2'
+    espresso = '3.3.0'
+}
