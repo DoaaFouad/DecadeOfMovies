@@ -9,8 +9,9 @@
 
 package com.doaa.decadeofmovies.ui.main.moviesmaster
 
+import com.doaa.decadeofmovies.data.repository.FileRepository
 import com.doaa.decadeofmovies.ui.base.BaseViewModel
 
-class MoviesMasterViewModel : BaseViewModel(){
+class MoviesMasterViewModel(val fileRepository: FileRepository) : BaseViewModel(){
 
 }

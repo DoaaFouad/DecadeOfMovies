@@ -2,7 +2,7 @@
     <string name="app_name">DecadeOfMovies</string>
 
     <!-- Movies master -->
-    <string name="movies_master_title">Which movie you are taking seriously tonight?</string>
+    <string name="movies_master_title">Which movie are you taking seriously tonight?</string>
     <string name="item_movies_master_genre">Genre</string>
 
 </resources>

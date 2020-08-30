@@ -21,6 +21,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions.unitTests {
+        includeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -61,7 +65,11 @@ dependencies {
 
     // testing
     testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit:$androidxtesting"
+    testImplementation "org.hamcrest:hamcrest:$hamcrestVersion"
+    testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+    testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 
 }
