@@ -50,6 +50,8 @@ ext {
     okhttpInterceptor = '3.9.1'
     glide ='4.11.0'
     glideCompiler = '4.11.0'
+    autoSlider = '1.3.2'
+    monthAndDatePicker = '1.3.0'
     leakCanary = '2.0'
     junit = '4.12'
     androidxtesting= '1.1.2'

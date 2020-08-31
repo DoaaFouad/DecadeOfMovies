@@ -9,10 +9,12 @@
 
 package com.doaa.decadeofmovies.ui.main.moviesmaster
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doaa.decadeofmovies.R
@@ -21,16 +23,20 @@ import com.doaa.decadeofmovies.ui.base.BaseActivity
 import com.doaa.decadeofmovies.ui.main.moviedetails.MovieDetailsActivity
 import com.doaa.decadeofmovies.utils.Status
 import com.google.gson.Gson
+import com.whiteelephant.monthpicker.MonthPickerDialog
 import kotlinx.android.synthetic.main.activity_movies_master.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
-class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener {
+class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener,
+    MonthPickerDialog.OnDateSetListener {
 
     override val viewModel by viewModel<MoviesMasterViewModel>()
     override val layoutRes = R.layout.activity_movies_master
 
     private var moviesAdapter: MoviesAdapter? = null
+    private var datePickerDialog: MonthPickerDialog.Builder? = null
 
     private fun initRecyclerViewer() {
         val layoutManager = LinearLayoutManager(this)
@@ -59,8 +65,37 @@ class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener {
         startActivity(intent)
     }
 
+    private fun initDatePicker() {
+        val today = Calendar.getInstance()
+        datePickerDialog =
+            MonthPickerDialog.Builder(
+                this,
+                this,
+                today.get(Calendar.YEAR),
+                today.get(Calendar.MONTH)
+            )
+
+        datePickerDialog?.setMinYear(1990)?.setActivatedYear(2020)
+            ?.setMaxYear(2020)
+            ?.showYearOnly()
+            ?.setOnYearChangedListener {
+            }
+    }
+
+    private fun openDatePicker() {
+        datePickerDialog?.build()?.show()
+    }
+
+    override fun onDateSet(selectedMonth: Int, selectedYear: Int) {
+    }
+
+    private fun filterMoviesByYear(selectedYear: Int?){
+
+    }
+
     override fun initViews() {
         initRecyclerViewer()
+        initDatePicker()
 
         viewModel.readMoviesFromLocalFile()
     }
@@ -80,6 +115,12 @@ class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener {
                 }
             }
         })
+    }
+
+    override fun setClickListeners() {
+        iv_filter?.setOnClickListener {
+            openDatePicker()
+        }
     }
 
     override fun showProgress() {
