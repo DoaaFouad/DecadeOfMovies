@@ -6,7 +6,7 @@
     <color name="colorAccent">#DA291C</color>
 
     <!-- background -->
-    <color name="colorMainBackground">@color/colorPrimary</color>
+    <color name="colorMainBackground">@color/colorPrimaryDark</color>
     <color name="colorSecondaryBackground">#F8F8FF</color>
 
     <!-- text -->

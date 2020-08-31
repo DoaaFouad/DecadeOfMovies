@@ -21,7 +21,7 @@ import com.doaa.decadeofmovies.R
 abstract class BaseActivity : AppCompatActivity() {
 
     protected abstract val viewModel: BaseViewModel
-    protected abstract val layoutRes: Int
+    protected abstract val layoutRes: Int //set layout of every activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
