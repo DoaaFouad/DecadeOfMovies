@@ -40,6 +40,7 @@ class MovieDetailsActivity : BaseActivity(){
     }
 
     override fun initViews() {
+        initCarousel()
     }
 
 }

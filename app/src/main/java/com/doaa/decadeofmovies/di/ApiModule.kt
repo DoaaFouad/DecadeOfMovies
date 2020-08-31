@@ -9,7 +9,7 @@
 
 package com.doaa.decadeofmovies.di
 
-import com.doaa.decadeofmovies.data.api.APIService
+import com.doaa.decadeofmovies.data.api.FlickrAPIService
 import com.doaa.decadeofmovies.utils.constants.Network
 import com.google.gson.Gson
 import okhttp3.Interceptor
@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val apiModule = module {
 
     val HTTP_LOGGING_INTERCEPTOR = "HTTP_LOGGING_INTERCEPTOR"
-    val RETROFIT_MAIN_CLIENT = "RETROFIT_MAIN_CLIENT"
+    val RETROFIT_FLICKER_CLIENT = "RETROFIT_FLICKER_CLIENT"
 
     single { Gson() }
 
@@ -34,18 +34,18 @@ val apiModule = module {
         logInterceptor as Interceptor
     }
 
-    single(named(RETROFIT_MAIN_CLIENT)) {
+    single(named(RETROFIT_FLICKER_CLIENT)) {
         OkHttpClient.Builder().addInterceptor(get(named(HTTP_LOGGING_INTERCEPTOR)))
             .build()
     }
 
     single {
         Retrofit.Builder()
-            .client(get(named(RETROFIT_MAIN_CLIENT)))
+            .client(get(named(RETROFIT_FLICKER_CLIENT)))
             .baseUrl(Network.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(get()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-            .create(APIService::class.java)
+            .create(FlickrAPIService::class.java)
     }
 }

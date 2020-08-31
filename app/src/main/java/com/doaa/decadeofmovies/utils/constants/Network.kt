@@ -10,5 +10,7 @@
 package com.doaa.decadeofmovies.utils.constants
 
 object Network {
-    const val BASE_URL = ""
+    const val BASE_URL = "https://api.flickr.com"
+    const val FLICKR_API_KEY = "13603dd2b98deda61a6051349fe86743"
+    const val FLICKR_METHOD_SEARCH = "flickr.photos.search"
 }
