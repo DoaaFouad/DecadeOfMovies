@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val apiModule = module {
 
     val HTTP_LOGGING_INTERCEPTOR = "HTTP_LOGGING_INTERCEPTOR"
-    val RETROFIT_FLICKER_CLIENT = "RETROFIT_FLICKER_CLIENT"
+    val RETROFIT_FLICKR_CLIENT = "RETROFIT_FLICKR_CLIENT"
 
     single { Gson() }
 
@@ -34,14 +34,14 @@ val apiModule = module {
         logInterceptor as Interceptor
     }
 
-    single(named(RETROFIT_FLICKER_CLIENT)) {
+    single(named(RETROFIT_FLICKR_CLIENT)) {
         OkHttpClient.Builder().addInterceptor(get(named(HTTP_LOGGING_INTERCEPTOR)))
             .build()
     }
 
     single {
         Retrofit.Builder()
-            .client(get(named(RETROFIT_FLICKER_CLIENT)))
+            .client(get(named(RETROFIT_FLICKR_CLIENT)))
             .baseUrl(Network.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(get()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

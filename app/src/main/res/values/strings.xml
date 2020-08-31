@@ -5,4 +5,10 @@
     <string name="movies_master_title">Which movie are you taking seriously tonight?</string>
     <string name="item_movies_master_genre">Genre</string>
 
+    <!-- Movie details -->
+    <string name="item_movie_detail_cast">Cast</string>
+
+    <!-- general -->
+    <string name="error">Error!</string>
+
 </resources>

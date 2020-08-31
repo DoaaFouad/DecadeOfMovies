@@ -11,10 +11,12 @@ package com.doaa.decadeofmovies.ui.main.moviedetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.doaa.decadeofmovies.data.model.Movie
 import com.doaa.decadeofmovies.data.model.MovieImageResponse
 import com.doaa.decadeofmovies.data.repository.MovieImagesRepository
 import com.doaa.decadeofmovies.ui.base.BaseViewModel
 import com.doaa.decadeofmovies.utils.Resource
+import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -22,6 +24,9 @@ class MovieDetailsViewModel(val movieImagesRepository: MovieImagesRepository) : 
 
     private val _movieImages = MutableLiveData<Resource<MovieImageResponse>>()
     val movieImages: LiveData<Resource<MovieImageResponse>> = _movieImages
+
+    private val _movie = MutableLiveData<Movie>()
+    val movie: LiveData<Movie> = _movie
 
     fun getMovieImages(movieName: String) {
         val imagesObservable = movieImagesRepository.getMovieImages(movieName, 1, 5)
@@ -36,5 +41,9 @@ class MovieDetailsViewModel(val movieImagesRepository: MovieImagesRepository) : 
         compositeDisposable.add(imagesObservable)
     }
 
+    // parse movie string passed from master activity to movie object
+    fun getPassedMovieObject(movie: String?) {
+        _movie.postValue(Gson().fromJson(movie, Movie::class.java))
+    }
 
 }

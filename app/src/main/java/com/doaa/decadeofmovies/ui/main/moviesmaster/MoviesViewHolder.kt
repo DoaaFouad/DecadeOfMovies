@@ -15,13 +15,14 @@ import com.doaa.decadeofmovies.data.model.Movie
 import kotlinx.android.synthetic.main.item_movies_master.view.*
 import java.lang.StringBuilder
 
-class MoviesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class MoviesViewHolder(val view: View, val listener: MoviesAdapterListener) : RecyclerView.ViewHolder(view) {
 
     fun bind(movie: Movie) {
         setTitle(movie.title)
         setYear(movie.year)
         setGenre(movie.genres)
         setRating(movie.rating)
+        setClickListener(movie)
     }
 
     private fun setTitle(title: String?) {
@@ -46,6 +47,12 @@ class MoviesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     private fun setRating(rate: Float?) {
         rate?.let {
             itemView.ratingbar?.rating = it
+        }
+    }
+
+    private fun setClickListener(movie: Movie){
+        itemView.setOnClickListener {
+            listener.onMovieSelected(movie)
         }
     }
 }

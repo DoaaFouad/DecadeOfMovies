@@ -10,9 +10,9 @@
 package com.doaa.decadeofmovies.utils
 
 import android.content.Context
-import android.os.Build
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.doaa.decadeofmovies.data.model.MovieImage
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.*
 import org.junit.Test
@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 class HelperMethodsTest {
 
     @Test
-    fun getJsonFileFromAssets_read_notnull() {
+    fun getJsonFileFromAssets_read_returnNotNull() {
         //given
         val fileName = "movies.json"
         val appContext = ApplicationProvider.getApplicationContext<Context>()
@@ -31,4 +31,16 @@ class HelperMethodsTest {
         //then
         assertThat(fileString, `is`(notNullValue()))
     }
+
+    @Test
+    fun getFlickrImageResponse_convertFullUrl_returnValidUrl() {
+        //given
+        val movieImage = MovieImage(id = "1", server = "1", secret = "1", farm = "1")
+        val expectedUrl = "https://farm1.static.flickr.com/1/1_1.jpg"
+        //when
+        var url = movieImage.getFullUrl()
+        //then
+        assertThat(url, equalTo(expectedUrl))
+    }
+
 }

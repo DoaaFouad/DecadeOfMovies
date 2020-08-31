@@ -12,6 +12,7 @@ package com.doaa.decadeofmovies.ui.main.moviedetails
 import android.view.View
 import com.bumptech.glide.Glide
 import com.doaa.decadeofmovies.data.model.MovieImage
+import com.doaa.decadeofmovies.utils.getFullUrl
 import com.smarteist.autoimageslider.SliderViewAdapter
 import kotlinx.android.synthetic.main.item_movie_image.view.*
 
@@ -20,7 +21,7 @@ class MovieImagesViewHolder(val itemView: View) : SliderViewAdapter.ViewHolder(i
     fun bind(image: MovieImage?) {
         itemView.context?.let {
             Glide.with(it.applicationContext)
-                .load(image)
+                .load(image?.getFullUrl())
                 .into(itemView.iv_movie_image)
         }
     }

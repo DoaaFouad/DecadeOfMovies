@@ -10,10 +10,16 @@
 package com.doaa.decadeofmovies.utils
 
 import android.content.Context
+import com.doaa.decadeofmovies.data.model.MovieImage
 
 // extension to load json file from assets
 fun Context.loadJSONFromAssets(fileName: String): String? {
     return applicationContext.assets.open(fileName).bufferedReader().use { reader ->
         reader.readText()
     }
+}
+
+// extension to convert flickr response to meaningful url
+fun MovieImage.getFullUrl(): String? {
+    return "https://farm${farm}.static.flickr.com/${server}/${id}_${secret}.jpg"
 }

@@ -10,9 +10,11 @@
 package com.doaa.decadeofmovies.di
 
 import com.doaa.decadeofmovies.data.repository.FileRepository
+import com.doaa.decadeofmovies.data.repository.MovieImagesRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val repositoryModule = module {
     single { FileRepository(androidContext()) }
+    single { MovieImagesRepository(get()) }
 }

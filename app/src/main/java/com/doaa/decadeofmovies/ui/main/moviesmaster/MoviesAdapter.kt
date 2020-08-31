@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.doaa.decadeofmovies.R
 import com.doaa.decadeofmovies.data.model.Movie
 
-class MoviesAdapter() : RecyclerView.Adapter<MoviesViewHolder>() {
+class MoviesAdapter(val listener: MoviesAdapterListener) : RecyclerView.Adapter<MoviesViewHolder>() {
 
     private var moviesList: List<Movie> = arrayListOf()
 
@@ -23,7 +23,7 @@ class MoviesAdapter() : RecyclerView.Adapter<MoviesViewHolder>() {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_movies_master, parent, false)
 
-        return MoviesViewHolder(view)
+        return MoviesViewHolder(view, listener)
     }
 
     override fun getItemCount(): Int {
