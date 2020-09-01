@@ -2,7 +2,7 @@
 
 DecadeOfMovies; android application written in Kotlin for showing last-decade movies details like rating, year of production, cast..etc.
 
-<img src="https://imgur.com/zBqPKdn" width="200" height="400" /> <img src="https://imgur.com/18CouKL" width="200" height="400" />
+<img src="https://serving.photos.photobox.com/49152271126ae5416067e67759d38d2a70533e9e242b391be5e655b7b3eaa2af5fad2787.jpg" width="200" height="400" /> <img src="https://serving.photos.photobox.com/24859105591c8fc24c73000c583a6fd6dfc07f925055ddddb08452ba40d59b85ce874346.jpg" width="200" height="400" />
 
 ## Features
 - Filter movies by year.
