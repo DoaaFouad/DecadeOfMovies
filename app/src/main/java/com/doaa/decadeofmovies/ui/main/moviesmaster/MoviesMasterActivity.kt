@@ -27,7 +27,9 @@ import com.whiteelephant.monthpicker.MonthPickerDialog
 import kotlinx.android.synthetic.main.activity_movies_master.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.sql.Struct
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener,
     MonthPickerDialog.OnDateSetListener {
@@ -78,7 +80,8 @@ class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener,
         datePickerDialog?.setMinYear(1990)?.setActivatedYear(2020)
             ?.setMaxYear(2020)
             ?.showYearOnly()
-            ?.setOnYearChangedListener {
+            ?.setOnYearChangedListener { year ->
+                filterMoviesByYear(year)
             }
     }
 
@@ -89,13 +92,29 @@ class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener,
     override fun onDateSet(selectedMonth: Int, selectedYear: Int) {
     }
 
-    private fun filterMoviesByYear(selectedYear: Int?){
+    private fun filterMoviesByYear(selectedYear: Int) {
+        viewModel.filter(selectedYear)
+        setCurrentYear(selectedYear.toString())
+    }
 
+    private fun showMoviesNullState() {
+        tv_no_data?.visibility = View.VISIBLE
+        rv_movies?.visibility = View.GONE
+    }
+
+    private fun hideMoviesNullState() {
+        tv_no_data?.visibility = View.GONE
+        rv_movies?.visibility = View.VISIBLE
+    }
+
+    private fun setCurrentYear(year: String) {
+        tv_current_year?.text = year
     }
 
     override fun initViews() {
         initRecyclerViewer()
         initDatePicker()
+        setCurrentYear(resources.getString(R.string.all))
 
         viewModel.readMoviesFromLocalFile()
     }
@@ -104,6 +123,7 @@ class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener,
         viewModel.movies.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
+                    hideMoviesNullState()
                     setMoviesList(it.data?.movies)
                     hideProgress()
                 }
@@ -111,9 +131,20 @@ class MoviesMasterActivity : BaseActivity(), MoviesAdapterListener,
                     showProgress()
                 }
                 Status.ERROR -> {
+                    showMoviesNullState()
                     hideProgress()
                 }
             }
+        })
+
+        viewModel.filterResult.observe(this, Observer { filteredResult ->
+            if (filteredResult.isNullOrEmpty()) {
+                showMoviesNullState()
+            } else {
+                hideMoviesNullState()
+                setMoviesList(filteredResult)
+            }
+
         })
     }
 

@@ -76,6 +76,7 @@ dependencies {
     testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
     testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    testImplementation "org.koin:koin-test:$koinTesting"
 
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 

@@ -22,8 +22,6 @@ import com.smarteist.autoimageslider.SliderView
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.activity_movie_details.progressBar
 import kotlinx.android.synthetic.main.activity_movie_details.tv_title
-import kotlinx.android.synthetic.main.activity_movies_master.*
-import kotlinx.android.synthetic.main.item_movies_master.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.StringBuilder
 
@@ -72,7 +70,7 @@ class MovieDetailsActivity : BaseActivity() {
 
     private fun initViewsMovieDetails(movie: Movie) {
         tv_title?.text = movie.title
-        tv_year?.text = movie.year
+        tv_year?.text = movie.year.toString()
         movie.rating?.let {
             ratingbar?.rating = it
         }
@@ -125,7 +123,7 @@ class MovieDetailsActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // bug found it in library it leaks adapter TODO
+        // TODO bug found it in library; it leaks adapter
         imageSlider_movie?.sliderAdapter = null
     }
 

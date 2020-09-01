@@ -11,6 +11,7 @@ package com.doaa.decadeofmovies.ui.main.moviesmaster
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.doaa.decadeofmovies.data.model.Movie
 import com.doaa.decadeofmovies.data.model.MoviesResponse
 import com.doaa.decadeofmovies.data.repository.FileRepository
 import com.doaa.decadeofmovies.ui.base.BaseViewModel
@@ -23,6 +24,9 @@ class MoviesMasterViewModel(val fileRepository: FileRepository) : BaseViewModel(
     private val _movies = MutableLiveData<Resource<MoviesResponse>>()
     val movies: LiveData<Resource<MoviesResponse>> = _movies
 
+    private val _filterResult = MutableLiveData<List<Movie>>()
+    val filterResult: LiveData<List<Movie>> = _filterResult
+
     fun readMoviesFromLocalFile() {
         val moviesObservable = fileRepository.readObjectFromJsonFile("movies.json")
             .subscribeOn(Schedulers.io())
@@ -34,5 +38,17 @@ class MoviesMasterViewModel(val fileRepository: FileRepository) : BaseViewModel(
                 _movies.postValue(Resource.error(err.localizedMessage, null))
             })
         compositeDisposable.add(moviesObservable)
+    }
+
+    fun filter(year: Int) {
+        movies.value?.data?.movies?.let { movies ->
+            _filterResult.postValue(searchAndSortByYear(year, movies))
+        }
+    }
+
+    fun searchAndSortByYear(year: Int, movies: List<Movie>): List<Movie> {
+        return movies.filter { movie -> movie.year == year }
+            .sortedByDescending { movie -> movie.rating }
+            .take(5)
     }
 }

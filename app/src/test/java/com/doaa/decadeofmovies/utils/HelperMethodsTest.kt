@@ -15,9 +15,16 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.doaa.decadeofmovies.data.model.MovieImage
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.*
+import org.junit.After
+import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.context.stopKoin
 
+/**
+ * Test class responsible for testing all helper functions and extensions
+ **/
 @RunWith(AndroidJUnit4::class)
 class HelperMethodsTest {
 
@@ -41,6 +48,15 @@ class HelperMethodsTest {
         var url = movieImage.getFullUrl()
         //then
         assertThat(url, equalTo(expectedUrl))
+    }
+
+    @Before
+    fun setUp(){
+    }
+
+    @After
+    fun tearDown(){
+        stopKoin()
     }
 
 }

@@ -19,7 +19,7 @@ class MoviesViewHolder(val view: View, val listener: MoviesAdapterListener) : Re
 
     fun bind(movie: Movie) {
         setTitle(movie.title)
-        setYear(movie.year)
+        setYear(movie.year.toString())
         setGenre(movie.genres)
         setRating(movie.rating)
         setClickListener(movie)

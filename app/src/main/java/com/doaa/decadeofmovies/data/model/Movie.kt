@@ -15,7 +15,7 @@ data class MoviesResponse(
 
 data class Movie(
     var title : String?,
-    var year : String?,
+    var year : Int?,
     var rating : Float?,
     var genres : List<String>?,
     var cast : List<String>?

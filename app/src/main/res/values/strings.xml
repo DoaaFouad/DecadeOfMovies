@@ -10,5 +10,7 @@
 
     <!-- general -->
     <string name="error">Error!</string>
+    <string name="all">All</string>
+    <string name="no_data">No Data Found!</string>
 
 </resources>
